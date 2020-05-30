@@ -5,10 +5,11 @@
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie-colors</title>
-  </head>
-  <body>
-
-
+    </head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://unpkg.com/@popperjs/core@2"></script>
+  
+<body>
     <input
       id="fileInput"
       type="file"
@@ -18,12 +19,14 @@
     <input type="button" value="Importer un film" onclick="openFile()" />
     <button onclick="capture()">Capture</button>
 
-
     <video id="video" controls src=""></video>
-    <canvas id="canvas" ></canvas>
-    <p id="progress" />
+    <canvas id="canvas"></canvas>
+    <p id="progress"></p>
+
+    <div id="divImgResult"><img src=""></div>
 
     <div id="divResult" />
+
 
     <script src="./funct.js"></script>
   </body>

@@ -13,3 +13,11 @@
 	border: solid black 1px;
 	margin: 0px auto;
 }
+
+
+#divImgResult{
+    margin: 0px 0px;
+    width: 260px;
+    height: 100px;
+    background-color: brown;
+}

@@ -5,6 +5,8 @@ var canvas = null;
 var ctx = null;
 var pro = null;
 
+var posX = null;
+
 function openFile() {
 	document.getElementById('fileInput').click();
 }
@@ -40,7 +42,7 @@ function drawFrame(e) {
 
     pro.innerHTML = (this.currentTime / this.duration * 100).toFixed(2) + ' %';
     if (this.currentTime < this.duration) {
-        this.currentTime += 100;
+        this.currentTime += 60;
     }
 }
 
@@ -48,6 +50,17 @@ function onend(e) {
     var img;
     var sizeWidth = 100 / array.length;
     var divResult = document.getElementById('divResult');
+
+    var divImgResult = document.getElementById('divImgResult');
+
+    divResult.onmousemove=function(e) {
+        var mousecoords = getMousePos(e);
+        console.log(mousecoords.x);
+        divImgResult.style.marginLeft= mousecoords.x - 130 + 'px';
+    };
+    
+
+
     for (var i = 0; i < array.length; i++) {
         img = new Image();
         img.onload = revokeURL;
@@ -69,10 +82,28 @@ function revokeURL(e) {
     URL.revokeObjectURL(this.src);
 }
 
-window.onmouseover = function(event) {
+document.body.onmouseover = function(event) {
 	event = event || window.event;
 	const srcEl = event.srcElement || event.target;
 	if (srcEl.classList.contains('img')) {
-		this.console.log('ok');
-	}
+        console.log(event)
+        var newDiv = document.createElement("div");
+        newDiv.id = "popper";
+        var newContent = document.createTextNode('Hi there and greetings!');
+        newDiv.appendChild(newContent);
+        srcEl.appendChild(newDiv)
+        srcEl.onmouseleave = function(){
+            this.removeChild(this.lastChild);
+        };
+    }
+    
 };
+
+function getMousePos(e) {
+    return {x:e.clientX,y:e.clientY};
+}
+
+
+
+
+
