@@ -1,0 +1,15 @@
+*{
+    margin : 0;
+    padding: 0;
+}
+
+#fileInput{
+    display: none;
+}
+
+#divResult{
+    width: 90%;
+	height: 60px;
+	border: solid black 1px;
+	margin: 0px auto;
+}

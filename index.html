@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="style.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Movie-colors</title>
+  </head>
+  <body>
+
+
+    <input
+      id="fileInput"
+      type="file"
+      accept="video/*,.mkv"
+      onchange="addFile(this.files)"
+    />
+    <input type="button" value="Importer un film" onclick="openFile()" />
+    <button onclick="capture()">Capture</button>
+
+
+    <video id="video" controls src=""></video>
+    <canvas id="canvas" ></canvas>
+    <p id="progress" />
+
+    <div id="divResult" />
+
+    <script src="./funct.js"></script>
+  </body>
+</html>
