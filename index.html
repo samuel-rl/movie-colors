@@ -5,33 +5,42 @@
     <link rel="stylesheet" href="style.css" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Movie-colors</title>
-    </head>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-    <script src="https://unpkg.com/@popperjs/core@2"></script>
-  
-<body>
+  </head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  <script src="https://unpkg.com/@popperjs/core@2"></script>
+
+  <body>
     <input
       id="fileInput"
       type="file"
       accept="video/*,.mkv"
       onchange="addFile(this.files)"
     />
-    <input id="import" class="box" type="button" value="Importer un film" onclick="openFile()" />
-    <button  id="capture" class="box" onclick="capture()">Capture</button>
+    <button id="import" class="box" onclick="openFile()">
+      Importer une vidéo
+    </button>
+
+    <div id="divCapture">
+        <div class="divDuration">
+            <p class="textDuration">Capturer une image toute les </p>
+            <input type="number" id="everyDuration" value="60" min="1" />
+            <p class="textDuration">secondes</p>
+        </div>
+      <button id="capture" class="box" onclick="capture()">Capture</button>
+    </div>
 
     <video id="video" controls src=""></video>
     <canvas id="canvas"></canvas>
     <div id="progressDiv">
-        <p id="progress"></p>
-        <div id="progressBarDiv">
-            <div id="progressBar"></div>
-        </div>
+      <p id="progress"></p>
+      <div id="progressBarDiv">
+        <div id="progressBar"></div>
+      </div>
     </div>
 
     <div id="divImgResult"></div>
 
     <div id="divResult" />
-
 
     <script src="./funct.js"></script>
   </body>

@@ -9,6 +9,8 @@ var posX = null;
 var importButton = document.getElementById('import');
 var captureButton = document.getElementById('capture');
 var progressDiv = document.getElementById('progressDiv');
+var divCapture = document.getElementById('divCapture');
+var everyDuration = document.getElementById('everyDuration');
 
 var ratio = null;
 
@@ -25,6 +27,7 @@ function displayBlock(node){
 displayNone(video)
 displayNone(canvas)
 displayNone(progressDiv)
+displayNone(divCapture)
 
 
 
@@ -40,12 +43,13 @@ const addFile = event => {
     video.setAttribute('src', url);
 
     displayNone(importButton)
+    displayBlock(divCapture)
 
 };
 
 const capture = () => {
     displayBlock(progressDiv)
-    displayNone(captureButton)
+    displayNone(divCapture)
 	canvas.width = video.videoWidth;
     canvas.height = video.videoHeight;
     
@@ -70,14 +74,13 @@ function drawFrame(e) {
     
     let res = (this.currentTime / this.duration * 100).toFixed(2);
 
-    console.log(res)
-
     progress.innerHTML = res + ' %';
     
     progressBar.style.width = res+'%';
 
 	if (this.currentTime < this.duration) {
-		this.currentTime += 200;
+        let nb = parseInt(everyDuration.value);
+		this.currentTime += nb;
 	}
 }
 
@@ -104,7 +107,7 @@ function onend(e) {
         img.setAttribute("nb", i);
 		divResult.appendChild(img);
 	}
-	URL.revokeObjectURL(this.src);
+    URL.revokeObjectURL(this.src);
 }
 
 function saveFrame(blob) {

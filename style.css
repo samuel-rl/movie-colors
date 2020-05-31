@@ -1,8 +1,8 @@
 * {
 	margin: 0;
 	padding: 0;
-    outline: none;
-    overflow: hidden;
+	outline: none;
+	overflow: hidden;
 }
 
 #fileInput {
@@ -12,8 +12,8 @@
 #divResult {
 	width: 95%;
 	position: absolute;
-	top: 25%;
-    left: 50%;
+	top: 30%;
+	left: 50%;
 	-ms-transform: translate(-50%, -50%);
 	transform: translate(-50%, -50%);
 }
@@ -21,12 +21,13 @@
 #divImgResult {
 	margin: 0;
 	position: absolute;
-    top: calc(25% + 100px);
+	top: calc(30% + 100px);
 }
 
 #progressDiv {
+	padding-top: 5%;
 	width: 90%;
-	height: 25px;
+	height: 40px;
 	margin: 0px auto;
 	text-align: center;
 }
@@ -39,7 +40,88 @@
 
 #progressBarDiv {
 	border-radius: 25px;
-	height: 3px;
-	background-color: #888888;
+	height: 5px;
+	background-color: #d3d3d3;
 	width: 100%;
+}
+
+/* GENERAL BUTTON STYLING */
+button,
+button::after {
+	-webkit-transition: all 0.3s;
+	-moz-transition: all 0.3s;
+	-o-transition: all 0.3s;
+	transition: all 0.3s;
+}
+
+button {
+	background: none;
+	border: 3px solid #888888;
+	border-radius: 5px;
+	color: #888888;
+	display: block;
+	font-size: 20px;
+	font-weight: bold;
+	margin: 50px auto;
+	padding: 2em 6em;
+	position: relative;
+	text-transform: uppercase;
+}
+
+button::before,
+button::after {
+	background: #888888;
+	content: '';
+	position: absolute;
+	z-index: -1;
+}
+
+button:hover {
+	color: white;
+	cursor: pointer;
+}
+
+/* BUTTON 3 */
+.box::after {
+	height: 0;
+	left: 50%;
+	top: 50%;
+	width: 0;
+}
+
+.box:hover:after {
+	height: 100%;
+	left: 0;
+	top: 0;
+	width: 100%;
+}
+
+#everyDuration {
+	width: 65px;
+	background: none;
+	border: 3px solid #888888;
+	border-radius: 5px;
+	color: #888888;
+	display: block;
+	font-size: 20px;
+	font-weight: bold;
+	padding: 10px 6px;
+	position: relative;
+	text-transform: uppercase;
+}
+
+.divDuration {
+    margin-top: 50px;
+	font-weight: bold;
+	display: flex;
+	flex-wrap: wrap;
+	align-items: center;
+	justify-content: center;
+	text-transform: uppercase;
+	color: #888888;
+}
+
+.textDuration{
+    margin-left: 10px;
+    margin-right: 10px;
 }
