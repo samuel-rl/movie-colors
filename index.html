@@ -16,12 +16,17 @@
       accept="video/*,.mkv"
       onchange="addFile(this.files)"
     />
-    <input type="button" value="Importer un film" onclick="openFile()" />
-    <button onclick="capture()">Capture</button>
+    <input class="box" type="button" value="Importer un film" onclick="openFile()" />
+    <button class="box" onclick="capture()">Capture</button>
 
     <video id="video" controls src=""></video>
     <canvas id="canvas"></canvas>
-    <p id="progress"></p>
+    <div id="progressDiv">
+        <p id="progress"></p>
+        <div id="progressBarDiv">
+            <div id="progressBar"></div>
+        </div>
+    </div>
 
     <div id="divImgResult"></div>
 

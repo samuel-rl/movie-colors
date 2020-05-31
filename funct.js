@@ -3,12 +3,12 @@ var array = [];
 var video = null;
 var canvas = null;
 var ctx = null;
-var pro = null;
-
+var progress = null;
+var progressBar = null;
 var posX = null;
 
 function openFile() {
-	document.getElementById('fileInput').click();
+    document.getElementById('fileInput').click();
 }
 
 const addFile = event => {
@@ -28,7 +28,8 @@ const capture = () => {
 
 	video.style.display = 'none';
 
-	pro = document.querySelector('#progress');
+    progress = document.querySelector('#progress');
+    progressBar = document.querySelector('#progressBar');
 
 	video.addEventListener('ended', onend, false);
 	video.addEventListener('timeupdate', drawFrame, false);
@@ -38,9 +39,16 @@ const capture = () => {
 function drawFrame(e) {
 	this.pause();
 	ctx.drawImage(this, 0, 0);
-	canvas.toBlob(saveFrame, 'image/jpeg');
+    canvas.toBlob(saveFrame, 'image/jpeg');
+    
+    let res = (this.currentTime / this.duration * 100).toFixed(2);
 
-	pro.innerHTML = (this.currentTime / this.duration * 100).toFixed(2) + ' %';
+    console.log(res)
+
+    progress.innerHTML = res + ' %';
+    
+    progressBar.style.width = res+'%';
+
 	if (this.currentTime < this.duration) {
 		this.currentTime += 200;
 	}
@@ -63,7 +71,7 @@ function onend(e) {
 		img.onload = revokeURL;
 		img.src = URL.createObjectURL(array[i]);
 		img.style.width = sizeWidth + '%';
-		img.style.height = '60px';
+		img.style.height = '100px';
         img.classList.add('img');
         img.setAttribute("nb", i);
 		divResult.appendChild(img);
@@ -78,6 +86,11 @@ function saveFrame(blob) {
 function revokeURL(e) {
 	URL.revokeObjectURL(this.src);
 }
+
+function getMousePos(e) {
+	return { x: e.clientX, y: e.clientY };
+}
+
 
 document.body.onmouseover = function(event) {
 	var divResult = document.getElementById('divImgResult');
@@ -103,6 +116,4 @@ document.body.onmouseover = function(event) {
     }
 };
 
-function getMousePos(e) {
-	return { x: e.clientX, y: e.clientY };
-}
+document.getElementById('divImgResult');
