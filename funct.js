@@ -1,11 +1,33 @@
 var array = [];
 
-var video = null;
-var canvas = null;
+var video = document.getElementById('video');
+var canvas = document.getElementById('canvas');
 var ctx = null;
 var progress = null;
 var progressBar = null;
 var posX = null;
+var importButton = document.getElementById('import');
+var captureButton = document.getElementById('capture');
+var progressDiv = document.getElementById('progressDiv');
+
+var ratio = null;
+
+function displayNone(node){
+    node.style.display = "none"
+}
+
+function displayBlock(node){
+    node.style.display = "block"
+}
+
+
+
+displayNone(video)
+displayNone(canvas)
+displayNone(progressDiv)
+
+
+
 
 function openFile() {
     document.getElementById('fileInput').click();
@@ -14,16 +36,21 @@ function openFile() {
 const addFile = event => {
 	let file = event[0];
 	let url = URL.createObjectURL(file);
-	video = document.getElementById('video');
 	var src = video.getAttribute('src');
-	video.setAttribute('src', url);
+    video.setAttribute('src', url);
+
+    displayNone(importButton)
+
 };
 
 const capture = () => {
-	video = document.getElementById('video');
-	canvas = document.getElementById('canvas');
+    displayBlock(progressDiv)
+    displayNone(captureButton)
 	canvas.width = video.videoWidth;
-	canvas.height = video.videoHeight;
+    canvas.height = video.videoHeight;
+    
+    ratio = video.videoWidth / video.videoHeight;
+
 	ctx = canvas.getContext('2d');
 
 	video.style.display = 'none';
@@ -55,6 +82,7 @@ function drawFrame(e) {
 }
 
 function onend(e) {
+    displayNone(canvas)
 	var img;
 	var sizeWidth = 100 / array.length;
 	var divResult = document.getElementById('divResult');
@@ -63,7 +91,7 @@ function onend(e) {
 
 	divResult.onmousemove = function(e) {
 		var mousecoords = getMousePos(e);
-		divImgResult.style.marginLeft = mousecoords.x - 130 + 'px';
+		divImgResult.style.marginLeft = mousecoords.x - 100 * ratio + 'px';
 	};
 
 	for (var i = 0; i < array.length; i++) {
@@ -71,7 +99,7 @@ function onend(e) {
 		img.onload = revokeURL;
 		img.src = URL.createObjectURL(array[i]);
 		img.style.width = sizeWidth + '%';
-		img.style.height = '100px';
+		img.style.height = '150px';
         img.classList.add('img');
         img.setAttribute("nb", i);
 		divResult.appendChild(img);
@@ -107,8 +135,8 @@ document.body.onmouseover = function(event) {
 		img = new Image();
 		img.onload = revokeURL;
 		img.src = URL.createObjectURL(array[i]);
-		img.style.width = '200px';
-		img.style.height = '125px';
+		img.style.width = 200 * ratio + 'px';
+        img.style.height = 200 + 'px';
 		img.classList.add('img');
 		divResult.appendChild(img);
 	}else{

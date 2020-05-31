@@ -16,8 +16,8 @@
       accept="video/*,.mkv"
       onchange="addFile(this.files)"
     />
-    <input class="box" type="button" value="Importer un film" onclick="openFile()" />
-    <button class="box" onclick="capture()">Capture</button>
+    <input id="import" class="box" type="button" value="Importer un film" onclick="openFile()" />
+    <button  id="capture" class="box" onclick="capture()">Capture</button>
 
     <video id="video" controls src=""></video>
     <canvas id="canvas"></canvas>
