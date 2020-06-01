@@ -45,7 +45,6 @@
 	width: 100%;
 }
 
-/* GENERAL BUTTON STYLING */
 button,
 button::after {
 	-webkit-transition: all 0.3s;
@@ -81,7 +80,6 @@ button:hover {
 	cursor: pointer;
 }
 
-/* BUTTON 3 */
 .box::after {
 	height: 0;
 	left: 50%;
